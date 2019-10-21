@@ -1,7 +1,7 @@
 #!/usr/bin/env python3                                
 #Just a simple script to automate my job application
 
-#
+
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
