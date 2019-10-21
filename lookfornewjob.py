@@ -8,9 +8,9 @@ from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
 
-sender_address = 'sender@gmail.com'
-sender_pass = 'password'
-receiver_address = 'receive@gmail.com'
+sender_address = 'arjay.canare@gmail.com'
+sender_pass = input("Password: ")
+receiver_address = input("Receiver: ")
 
 possition = 'SOC analyst'
 
@@ -32,7 +32,7 @@ message['To'] = receiver_address
 message['Subject'] = 'A job application for {}'.format(possition)
 
 message.attach(MIMEText(mail_content, 'plain'))
-attach_file_name = 'robert-john-canare-cv.pdf'
+attach_file_name = '/root/Desktop/robert-john-canare-cv.pdf'
 attach_file = open(attach_file_name, 'rb')
 payload = MIMEBase('application', 'octate-stream')
 payload.set_payload((attach_file).read())
