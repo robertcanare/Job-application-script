@@ -47,12 +47,11 @@ message['Subject'] = 'A job application for {}'.format(args.role)
 message.attach(MIMEText(mail_content, 'plain'))
 
 #attach resume
-attach_file_name = '/root/Desktop/robert-john-canare-cv.pdf'
+attach_file_name = 'robert-john-canare-cv.pdf'
 attach_file = open(attach_file_name, 'rb')
-payload = MIMEBase('application', 'octate-stream')
+payload = MIMEBase('application', 'pdf', Name='robert_john_cv')
 payload.set_payload((attach_file).read())
 encoders.encode_base64(payload)
-
 payload.add_header('Content-Decomposition', 'attachment', filename=attach_file_name)
 message.attach(payload)
 
