@@ -1,27 +1,29 @@
 #!/usr/bin/env python3                                
-#Just a simple script to automate my job application
+# Just a simple script to automate my job application
 
-import smtplib, base64, argparse
+import argparse
+import base64
+import smtplib
+from email import encoders
+from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from email.mime.base import MIMEBase
-from email import encoders
 
-#get user input
+# get user input
 parser = argparse.ArgumentParser(description='Simple script to automate my job application.')
 parser.add_argument('--recruitment_email', required=True, help='Recruitment email')
-#parser.add_argument('--sender_email', required=True, help='Sender email')
+# parser.add_argument('--sender_email', required=True, help='Sender email')
 parser.add_argument('--recruiter_name', required=True, help='Recruitment name')
 parser.add_argument('--company_name', required=True, help='Company name')
 parser.add_argument('--role', required=True, help='Job role')
-#parser.add_argument('--password', required=True, help='Email password')
+# parser.add_argument('--password', required=True, help='Email password')
 parser.add_argument('--skills_1', required=True, help='Skills set 1')
 parser.add_argument('--skills_2', required=True, help='Skills set 2')
 parser.add_argument('--skills_3', required=True, help='Skills set 3')
 args = parser.parse_args()
 
 ################################################################
-#Encode password first
+# Encode password first
 # data = "password"
 #
 # # Standard Base64 Encoding
@@ -31,16 +33,14 @@ args = parser.parse_args()
 # print(encodedStr)
 ###############################################################
 
-#credentials
+# credentials
 email = 'email'
 encoded_password = "encoded_password"
 
-#Decode password, yeah it's pretty easy to decode it.
+# Decode password, yeah it's pretty easy to decode it.
 decodedBytes = base64.b64decode(encoded_password)
 decodedStr = str(decodedBytes, "utf-8")
-
 password = decodedStr
-
 
 mail_content = '''Dear {},
 
@@ -64,10 +64,9 @@ message = MIMEMultipart()
 message['From'] = email
 message['To'] = args.recruitment_email
 message['Subject'] = 'A job application for {}'.format(args.role)
-
 message.attach(MIMEText(mail_content, 'plain'))
 
-#attach resume
+# attach resume
 attach_file_name = 'robert-john-canare-cv.pdf'
 attach_file = open(attach_file_name, 'rb')
 payload = MIMEBase('application', 'pdf', Name='robert_john_cv')
